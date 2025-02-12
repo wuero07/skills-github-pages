@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz San Valentín Pao❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.5s;
+        }
+        .card:hover {
+            transform: scale(1.1);
+        }
+        .heart {
+            color: red;
+            font-size: 50px;
+            animation: heartbeat 1s infinite alternate;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+        .message {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 15px;
+            border: none;
+            background-color: red;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .button:hover {
+            background-color: darkred;
+        }
+        .hidden {
+            display: none;
+        }
+        .sad-bear, .happy-bear {
+            width: 80px;
+            animation: shake 0.5s infinite alternate;
+        }
+        @keyframes shake {
+            0% { transform: translateX(-5px); }
+            100% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="heart">❤️</div>
+        <p class="message" id="question">¿Quieres ser mi San Valentín? 💕</p>
+        <div class="buttons">
+            <button class="button" id="yesButton" onclick="yesResponse()">Sí</button>
+            <button class="button" id="noButton" onclick="noResponse()">No</button>
+        </div>
+        <p class="message hidden" id="responseMessage"></p>
+        <img src="Descarga.jpg" id="sadBear" class="hidden sad-bear" alt="Osito triste">
+        <img src="Oso.png" id="happyBear" class="hidden happy-bear" alt="Osito feliz">
+    </div>
+    <script>
+        let noClickCount = 0;
+
+        function yesResponse() {
+            document.getElementById('responseMessage').innerText = 'Te amo mucho, gracias por aceptar. Será el mejor San Valentín ❤️';
+            document.getElementById('responseMessage').classList.remove('hidden');
+            document.getElementById('happyBear').classList.remove('hidden');
+        }
+
+        function noResponse() {
+            noClickCount++;
+            let responseMessage = document.getElementById('responseMessage');
+            let sadBear = document.getElementById('sadBear');
+            let noButton = document.getElementById('noButton');
+            
+            if (noClickCount === 1) {
+                responseMessage.innerText = 'Piénsalo bien🥲';
+                responseMessage.classList.remove('hidden');
+            } else if (noClickCount === 2) {
+                responseMessage.innerText = '¿Estás segura?🥲';
+                sadBear.classList.remove('hidden');
+            } else if (noClickCount === 3) {
+                responseMessage.innerText = 'Piénsalo un poquito más🥲';
+            } else if (noClickCount === 4) {
+                noButton.classList.add('hidden');
+                sadBear.classList.add('hidden');
+                responseMessage.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
+
